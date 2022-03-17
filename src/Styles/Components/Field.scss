@@ -1,0 +1,23 @@
+@import "src/Styles/costants";
+
+.default-input {
+	border-radius: $border-radius !important;
+	transition: $transition;
+	border: 1px solid $white;
+	background-color: unset !important;
+	& ~ label {
+		color: $text-color !important;
+	}
+	&.invalid {
+		box-shadow: $box-shadow-error !important;
+	}
+	&:focus {
+		transform: scale(1.1) !important;
+		border-color: transparent !important;
+		box-shadow: $box-shadow;
+
+		& ~ label {
+			color: $text-color !important;
+		}
+	}
+}

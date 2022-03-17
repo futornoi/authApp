@@ -1,10 +1,15 @@
-import { FC } from "react";
 import AuthLayout from "../AuthLayout";
+import RegistrationForm from "./RegistrationForm";
+import { useNavigate } from "react-router-dom";
+import { pagesPath } from "../../../Hooks/useRouterConfig";
 
-const RegistrationContainer: FC = () => {
+const RegistrationContainer = () => {
+  const navigate = useNavigate();
+  const goRedirect = () => navigate(pagesPath.signIn)
+
   return (
     <AuthLayout>
-      registration
+      <RegistrationForm goRedirect={goRedirect}/>
     </AuthLayout>
   )
 }

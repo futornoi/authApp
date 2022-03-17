@@ -1,9 +1,10 @@
 @import "src/Styles/costants";
 @import "~bootstrap/scss/bootstrap";
+@import "src/Styles/placeholders";
 
 body {
   margin: 0;
-  font-family: 'Hubballi', cursive;
+  font-family: 'Hubballi', sans-serif;
   font-size: 18px;
   background-color: $bg-color;
   color: $text-color;
@@ -11,12 +12,24 @@ body {
 }
 
 h1,h2,h3,h4,h5,h6{font-size: inherit;}
-a {color: inherit;}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  outline: none;
+}
 
 input {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+}
+
+img {
+  width: 100%;
+  height: 100%;
 }
 
 code {
@@ -26,7 +39,6 @@ code {
 
 .default-link {
   color: inherit;
-  transition: $transition;
   &:after {
     content: '';
     transition: inherit;
@@ -41,4 +53,12 @@ code {
     }
     color: $text-hover-color;
   }
+}
+
+.avatar-img_container {
+  overflow: hidden;
+}
+.avatar-img {
+  @include size(100%);
+  object-fit: cover;
 }

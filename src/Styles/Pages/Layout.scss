@@ -1,0 +1,23 @@
+@import "src/Styles/costants";
+@import "src/Styles/placeholders";
+
+.layout {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	position: relative;
+
+	#main {
+		flex: 1 0 auto;
+	}
+
+	#header {
+		background-color: rgba(14, 229, 14, 0.51);
+	}
+
+	#footer {
+		flex: 0 0 auto;
+		background-color: rgba(161, 0, 255, 0.59);
+	}
+}
+
