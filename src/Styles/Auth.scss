@@ -1,0 +1,6 @@
+@import "placeholders";
+
+.auth-container {
+	height: 100vh;
+	@extend %flex-center;
+}

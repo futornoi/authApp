@@ -1,0 +1,15 @@
+@import "placeholders";
+
+.not-found {
+	height: 100vh;
+	@extend %flex-center;
+	flex-direction: column;
+
+	h1 {
+		line-height: 8vw;
+		font-size: 10vw;
+	}
+	span {
+		cursor: pointer;
+	}
+}
