@@ -11,16 +11,13 @@ export enum pagesPath {
   home = '/',
 }
 
-const notAuthConfig = [
+const config = [
   {path: pagesPath.signIn, element: <SignInContainer/>},
   {path: pagesPath.registration, element: <RegistrationContainer/>},
-  {path: pagesPath.notFound, element: <NotFound/>}
-]
-const authConfig = [
-  ...notAuthConfig,
   {path: pagesPath.home , element: <HomeContainer/>},
+  {path: pagesPath.notFound, element: <NotFound/>},
 ];
 
-export const useRouterConfig = (isAuth: boolean) => {
-  return useRoutes(isAuth ? authConfig : notAuthConfig)
+export const useRouterConfig = () => {
+  return useRoutes(config)
 }

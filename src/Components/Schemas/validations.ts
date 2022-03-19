@@ -11,7 +11,7 @@ enum errorMessages {
 const definedSchema = (obj: AnyObject) => yup.object().shape(obj);
 
 export const registrationValidSchema = definedSchema({
-  name: yup.string().min(3, errorMessages.SMALL).required(errorMessages.REQUIRED),
+  name: yup.string().min(4, errorMessages.SMALL).required(errorMessages.REQUIRED),
   email: yup.string().email(errorMessages.INCORRECT).required(errorMessages.REQUIRED),
   password :yup.string().min(8, errorMessages.SMALL).required(errorMessages.REQUIRED),
   confirmPassword: yup.string()
@@ -20,4 +20,4 @@ export const registrationValidSchema = definedSchema({
     .required(errorMessages.REQUIRED),
 })
 
-export const signInValidSchema = registrationValidSchema.omit(['confirmPassword']);
+export const signInValidSchema = registrationValidSchema.omit(['confirmPassword', 'name']);

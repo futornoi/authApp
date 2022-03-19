@@ -27,7 +27,7 @@ const SignInForm: React.FC<IAuthForms<ISignInValues>> = ({ goRedirect, formik })
       touched={formik.touched.password}
     />
     <Form.Group className="mt-3 d-flex gap-3">
-      <Button className="w-50 align-self-center" type="submit">Sign In</Button>
+      <Button disabled={formik.isSubmitting} className="w-50 align-self-center" type="submit">Sign In</Button>
       <Button className="w-50 align-self-center green" type="button" onClick={goRedirect}>Registration</Button>
     </Form.Group>
   </Form>

@@ -60,7 +60,7 @@ const RegistrationForm: React.FC<IAuthForms<IRegistrationValues>> = ({ goRedirec
     </Row>
     <Form.Group className="mt-3 d-flex gap-3">
       <Button className="w-50 align-self-center" onClick={goRedirect}>Go back to sign In</Button>
-      <Button className="w-50 align-self-center green" type="submit">Registration</Button>
+      <Button disabled={formik.isSubmitting} className="w-50 align-self-center green" type="submit">Registration</Button>
     </Form.Group>
   </Form>
 )

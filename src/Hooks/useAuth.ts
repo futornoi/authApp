@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
+import { useState } from "react";
+import Cookies from "js-cookie";
 
 interface IUseAuth {
   isAuth: boolean,
@@ -7,19 +7,16 @@ interface IUseAuth {
 }
 
 export const useAuth = () => {
-  const [cookies, setCookies, removeCookies] = useCookies(["apiToken"]);
-  const token = cookies["apiToken"] || null
+  const token = Cookies.get("apiToken") || null
   const [authInfo, setAuthInfo] = useState<IUseAuth>({
-    isAuth: false,
-    token: null
+    isAuth: !!token,
+    token: token
   });
 
-  useEffect(() => {
-    setAuthInfo({
-      isAuth: !!token,
-      token: token,
-    });
-  }, [])
+  const handlerOnCookie = {
+    setCookies: (token: string) => Cookies.set("apiToken", token),
+    removeCookies: () => Cookies.remove("apiToken")
+  }
 
-  return {authInfo, setAuthInfo, setCookies, removeCookies};
+  return {authInfo, setAuthInfo, handlerOnCookie};
 }
