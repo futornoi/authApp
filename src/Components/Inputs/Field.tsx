@@ -9,18 +9,24 @@ const Field:React.FC<IField> = (
     value,
     placeholder,
     onChange,
+    onBlur,
     className,
-    error
+    error,
+    touched,
+    name,
   }) => {
+  const showError = touched && error;
   return (
     <Form.Group className={className ? className : '' + "input-wrap"}>
-      <Form.FloatingLabel label={error || placeholder}>
+      <Form.FloatingLabel label={showError ? (placeholder + ' : ' + error) : placeholder}>
       <Form.Control
-        className={`default-input ${error ? 'invalid' : ''}`}
+        className={`default-input ${showError ? 'invalid' : ''}`}
+        name={name}
         type={type}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
       />
       </Form.FloatingLabel>
     </Form.Group>

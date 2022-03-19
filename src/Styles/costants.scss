@@ -4,8 +4,9 @@ $green: rgb(100, 199, 130);
 $gray: #a4ad95;
 $text-color: #05422a;
 $text-hover-color: #05694b;
-$box-shadow: 0 0 0.4rem 0.15rem rgba(100, 199, 130, 0.85);
-$box-shadow-error: 0 0 0.4rem 0.15rem rgba(245, 85, 85, 0.85);
+$box-shadow: 0 0 0.4rem 0.15rem $green;
+$error-red: rgba(245, 85, 85, 0.85);
+$box-shadow-error: 0 0 0.4rem 0.15rem $error-red;
 $border-radius: 8px;
 
 $transition: ease .2s;

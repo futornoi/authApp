@@ -11,6 +11,13 @@
 	background-color: unset;
 	transition: $transition;
 
+	&:disabled {
+		border-color: $gray;
+		color: $gray;
+		pointer-events: none;
+		cursor: default;
+	}
+
 	&:hover {
 		color: $white;
 		border-color: $white;
