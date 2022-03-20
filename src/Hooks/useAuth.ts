@@ -1,22 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { IUser, usersApi } from "../Api/users";
 
 interface IUseAuth {
-  isAuth: boolean,
   token: string | null,
+  user: IUser | null
 }
 
 export const useAuth = () => {
   const token = Cookies.get("apiToken") || null
   const [authInfo, setAuthInfo] = useState<IUseAuth>({
-    isAuth: !!token,
-    token: token
+    token: token,
+    user: null
   });
 
-  const handlerOnCookie = {
-    setCookies: (token: string) => Cookies.set("apiToken", token),
-    removeCookies: () => Cookies.remove("apiToken")
-  }
+  useEffect(() => {
+    const getAuthData = async () => {
+      if (!!token) {
+        const data = await usersApi.getAuthUser(token);
+        setAuthInfo(prev => ({
+          ...prev,
+          user: data
+        }))
+      }
+    }
+    getAuthData()
+  }, [])
 
-  return {authInfo, setAuthInfo, handlerOnCookie};
+  return { authInfo, setAuthInfo };
 }

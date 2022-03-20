@@ -5,25 +5,28 @@ import "src/Styles/Pages/Layout.scss";
 import { useAuth } from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { pagesPath } from "../../Hooks/useRouterConfig";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Layout:React.FC = ({ children }) => {
+  const [openedNav, setOpenedNav] = useState(false);
   const {authInfo} = useAuth();
   const navigate = useNavigate();
 
+  const toggleOpen = () => setOpenedNav(prev => !prev);
+
   useEffect(() => {
-    if(!authInfo.isAuth) navigate(pagesPath.signIn);
+    if(!authInfo.token) navigate(pagesPath.signIn);
   }, []);
 
   return (
     <div className="layout">
-      <Header/>
-      <main id="main">
+      <Header openedNav={openedNav} toggleNav={toggleOpen}/>
+      <main id="main" style={{transitionDelay: openedNav ? '' : '.2s'}} className={`main ${openedNav ? 'openedNav' : ''}`}>
         <Container>
           {children}
         </Container>
       </main>
-      <Footer/>
+      <Footer openedNav={openedNav}/>
     </div>
   )
 }

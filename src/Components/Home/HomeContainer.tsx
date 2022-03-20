@@ -33,7 +33,7 @@ const HomeContainer = () => {
           <ul>
             {
               usersList?.map(user => (
-                <li>{user.name} {user.email} {user.roles[0]}</li>
+                <li key={user._id}>{user.name} {user.email} {user.roles[0]}</li>
               ))
             }
           </ul>

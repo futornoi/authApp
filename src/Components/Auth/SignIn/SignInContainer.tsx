@@ -6,17 +6,16 @@ import { useFormik } from "formik";
 import { signInValidSchema } from "../../Schemas/validations";
 import { ISignInValues } from "../AuthTypes";
 import { authApi } from "../../../Api/auth";
-import { useAuth } from "../../../Hooks/useAuth";
+import Cookies from "js-cookie";
 
 const SignInContainer = () => {
   const navigate = useNavigate();
   const goRedirect = () => navigate(pagesPath.registration);
-  const { handlerOnCookie } = useAuth();
 
   const handleOnSubmit = async (values: ISignInValues) => {
     try {
       const resData = await authApi.login(values);
-      handlerOnCookie.setCookies(resData.token);
+      Cookies.set("apiToken", resData.token)
       navigate(pagesPath.home);
     } catch (e: any) {
       formik.setFieldError(e.key, e.msg);
