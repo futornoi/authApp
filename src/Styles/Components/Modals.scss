@@ -1,8 +1,9 @@
 @import "../costants";
 
 
-.introModal {
+.default-modal {
 	.modal-dialog .modal-content {
+		background-color: unset;
 		border-radius: $border-radius;
 		overflow: hidden;
 		.modal-body {

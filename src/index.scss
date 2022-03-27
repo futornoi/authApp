@@ -6,13 +6,15 @@ body {
 	margin: 0;
 	font-family: 'Hubballi', sans-serif;
 	font-size: 18px;
-	background-color: $bg-color;
+	background: $bg-color;
 	color: $text-color;
 	line-height: 18px;
+	overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, p {
 	font-size: inherit;
+	margin: 0;
 }
 
 a {
@@ -39,6 +41,7 @@ img {
 
 svg {
 	transition: $transition;
+
 	path {
 		transition: inherit;
 	}
@@ -49,6 +52,24 @@ code {
 	monospace;
 }
 
+//CONTAINER
+.container {
+	max-width: $max-width;
+	padding: 0 40px;
+	@include media($lg) {
+		padding: 0 20px;
+	}
+}
+
+//MODAL
+.modal-backdrop {
+	background: rgba(107, 106, 106, 0.2);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	opacity: 1 !important;
+}
+
+//LINK
 .default-link {
 	color: inherit;
 	transition: $transition;
@@ -84,6 +105,7 @@ code {
 	}
 }
 
+//AVATAR
 .avatar-img_container {
 	overflow: hidden;
 }
@@ -91,4 +113,65 @@ code {
 .avatar-img {
 	@include size(100%);
 	object-fit: cover;
+	&.letter {
+		@extend %flex-center;
+		background-color: rgba($gray, .2);
+		color: $white;
+		font-size: 24px;
+	}
+}
+
+//CARD
+.card__wrapper {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	gap: 15px;
+}
+
+.card {
+	padding: 12px;
+	box-shadow: 0 2px 0.4rem 0.05rem rgba($gray, .5px);
+	transition: $transition;
+	&:hover {
+		box-shadow: 0 2px 0.4rem 0.05rem rgba($green, .5px);
+	}
+}
+
+//MORE ACTIONS
+
+.moreActions {
+	cursor: pointer;
+	&_burger {
+		display: flex;
+		gap: 4px;
+		span {
+			transition: $transition;
+			@include size(8px, 8px, 50%);
+			background-color: $text-color;
+		}
+	}
+	&_content {
+		transition: $transition;
+		opacity: 0;
+		visibility: hidden;
+		position: absolute;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		top: 5px;
+		right: 0;
+		padding: 20px 10px 10px;
+		border: 1px solid $text-color;
+		border-radius: $border-radius;
+	}
+
+	&:hover {
+		.moreActions_burger span {
+			background-color: $green;
+		}
+		.moreActions_content {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
 }

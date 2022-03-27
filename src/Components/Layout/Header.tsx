@@ -21,13 +21,13 @@ const Header:React.FC<IHeader> = ({openedNav, toggleNav}) => {
 
   return (
     <header id="header">
-      <Navbar bg="dark" expand="lg" variant="dark">
+      <Navbar expand="lg">
         <Container>
           <NavigationContainer openedNav={openedNav} toggleNav={toggleNav}/>
-          <Navbar.Brand style={{zIndex: 3}} href="#home">Futornoi</Navbar.Brand>
-          <Navbar id="basic-navbar-nav" className="justify-content-end">
+          <Navbar.Brand style={{zIndex: 2, marginLeft: 40}} href="#home">Futornoi</Navbar.Brand>
+          <Navbar style={{zIndex: 2}} id="basic-navbar-nav" className="justify-content-end">
             <Navbar.Text>
-              Signed in as: <button className="default-link white" onClick={signOut}>{user?.name}</button>
+              Signed in as: <button className="default-link" onClick={signOut}>{user?.name}</button>
             </Navbar.Text>
           </Navbar>
         </Container>

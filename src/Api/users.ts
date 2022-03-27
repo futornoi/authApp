@@ -4,7 +4,12 @@ export interface IUser {
   _id: string,
   name: string,
   email: string,
-  roles: string[],
+  roles: RolesList[],
+}
+
+export enum RolesList {
+  USER = "USER",
+  ADMIN = "ADMIN"
 }
 
 export const usersApi = {

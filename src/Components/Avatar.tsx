@@ -1,22 +1,30 @@
 import { motion } from "framer-motion";
+import { getFirstLetters } from "../Helpers/nameInitials";
 
 interface IAvatar {
   imgSrc: string,
+  initialName: string,
   sizes?: number,
+  colorIndex?: number,
 }
 
-const Avatar:React.FC<IAvatar> = ({imgSrc, sizes}) => {
+const Avatar:React.FC<IAvatar> = ({imgSrc, sizes, initialName}) => {
   const avatarSize = {
-    width: sizes ?? 60,
-    height: sizes ?? 60,
-    borderRadius: 100,
+    width: sizes ?? 80,
+    height: sizes ?? 80,
+    borderRadius: "50%",
+    border: imgSrc ? '' : '1px solid white',
 }
 
   return (
     <motion.div
       style={avatarSize} className="avatar-img_container"
-      whileHover={{scale: 1.1, borderRadius: 30}}>
-      <img className="avatar-img" src={imgSrc} alt="me photo"/>
+      whileHover={{scale: 1.1, borderRadius: "30%"}}>
+      {
+        imgSrc
+          ? <img className="avatar-img" src={imgSrc} alt="me photo"/>
+          : <div className="avatar-img letter">{getFirstLetters(initialName)}</div>
+      }
     </motion.div>
   )
 }

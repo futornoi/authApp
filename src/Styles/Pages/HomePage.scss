@@ -1,0 +1,32 @@
+@import "../costants";
+@import "../placeholders";
+
+.userCard {
+	background: rgba(255, 255, 255, .2);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	@extend %flex-center;
+
+	.user-data {
+		margin-top: 10px;
+		display: flex;
+		gap: 15px;
+		flex-direction: column;
+
+		.user-field {
+			font-size: 24px;
+			&:not(.title) {
+				display: grid;
+				grid-template-columns: 80px 1fr;
+			}
+		}
+	}
+
+	&.isMeCard {
+		background: $green;
+	}
+
+	.userCard-more {
+		margin-left: auto;
+	}
+}

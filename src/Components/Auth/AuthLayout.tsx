@@ -7,6 +7,8 @@ import { pagesPath } from "../../Hooks/useRouterConfig";
 import ModalWrapper from "../Modal/ModalWrapper";
 import { useModals } from "../../Hooks/useModals";
 
+const imgSrc = "/images/avatar.jpeg";
+
 const AuthLayout: FC = ({ children }) => {
   const location = useLocation();
   const isSignIn = location.pathname === pagesPath.signIn;
@@ -16,7 +18,7 @@ const AuthLayout: FC = ({ children }) => {
     <Container className="auth-container flex-column">
       <Row>
         <Col className="mb-4" onClick={toggleModal('forMeModal')}>
-          <Avatar sizes={100} imgSrc="/images/avatar.jpeg"/>
+          <Avatar initialName="Admin" sizes={100} imgSrc={imgSrc}/>
         </Col>
       </Row>
       <Row className="w-100 justify-content-center">
@@ -25,10 +27,10 @@ const AuthLayout: FC = ({ children }) => {
         </Col>
       </Row>
       <ModalWrapper
-        className="introModal"
+        className="default-modal"
         active={modal?.forMeModal}
         setActive={toggleModal('forMeModal')}
-        bodyContent={<img className="avatar-img" src="/images/avatar.jpeg"/>}
+        bodyContent={<img className="avatar-img" src={imgSrc}/>}
       />
     </Container>
   )

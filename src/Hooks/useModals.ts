@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function useModals<T>(modalNames: string[]) {
+export const useModals = <T>(modalNames: string[]) => {
 
   const getInitialOption = (keys: typeof modalNames) => {
     let modalOptions = {} as T;
@@ -17,4 +17,4 @@ export function useModals<T>(modalNames: string[]) {
   }
 
   return {modal, toggleModal};
-}
+};

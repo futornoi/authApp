@@ -1,11 +1,11 @@
 import Header from "./Header";
 import Footer from "./Footer";
 import { Container } from "react-bootstrap";
-import "src/Styles/Pages/Layout.scss";
 import { useAuth } from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { pagesPath } from "../../Hooks/useRouterConfig";
 import { useEffect, useState } from "react";
+import "src/Styles/Pages/Layout.scss";
 
 const Layout:React.FC = ({ children }) => {
   const [openedNav, setOpenedNav] = useState(false);

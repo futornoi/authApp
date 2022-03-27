@@ -8,11 +8,21 @@
 	position: relative;
 	transition: margin-left $transition;
 
-	.openedNav {margin-left: 300px;}
+	.openedNav {
+		margin-left: 300px;
+		@include media($lg) {
+			margin-left: 100vw;
+		}
+	}
 
 	#header {
 		position: fixed;
 		width: 100vw;
+		font-size: 24px;
+
+		& > .navbar {
+			background: rgba(107, 106, 106, 0.2);
+		}
 	}
 
 	#main {
@@ -60,14 +70,19 @@
 	bottom: 0;
 	z-index: 2;
 	width: 300px;
+	@include media($lg) {
+		width: 100vw;
+	}
 
 	.navigation-background {
 		position: absolute;
 		top: 0;
 		left: 0;
 		bottom: 0;
-		width: 300px;
-		background: rgb(33, 37, 41);
+		width: 100%;
+		background: rgba(107, 106, 106, 0.2);
+		-webkit-backdrop-filter: blur(10px);
+		backdrop-filter: blur(10px);
 	}
 
 	.navigation-burger {
@@ -78,15 +93,15 @@
 		-ms-user-select: none;
 		cursor: pointer;
 		position: absolute;
-		top: 12px;
-		left: 12px;
+		top: 13px;
+		left: 11px;
 		width: 50px;
 		height: 50px;
 		border-radius: 50%;
 		background: transparent;
 
 		svg path {
-			stroke: $white;
+			stroke: $text-color;
 		}
 	}
 }

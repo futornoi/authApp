@@ -1,11 +1,11 @@
-$bg-color: rgb(191, 216, 217);
+$bg-color: linear-gradient(90deg, #9cc9d7 0, #b0e1d4 58%);
 $white: #ffffff;
-$green: rgb(100, 199, 130);
-$gray: #a4ad95;
+$green: rgba(100, 199, 130, 0.6);
+$gray: rgba(185, 190, 177, 0.38);
 $text-color: #05422a;
 $text-hover-color: #05694b;
 $box-shadow: 0 0 0.4rem 0.15rem $green;
-$error-red: rgba(245, 85, 85, 0.85);
+$error-red: rgba(245, 85, 85, 0.6);
 $box-shadow-error: 0 0 0.4rem 0.15rem $error-red;
 $border-radius: 8px;
 
