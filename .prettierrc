@@ -5,9 +5,10 @@
   "semi": true,
   "useTabs": false,
   "tabWidth": 2,
-  "printWidth": 80,
+  "printWidth": 100,
   "parser": "typescript",
   "jsxBracketSameLine": true,
+  "bracketSameLine": true,
   "arrowParens": "avoid",
   "quoteProps": "as-needed",
   "jsxSingleQuote": false
