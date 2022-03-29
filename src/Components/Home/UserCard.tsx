@@ -1,12 +1,5 @@
-import { IUser } from "../../Api/users";
 import Avatar from "../Avatar";
-
-interface IUserCard {
-  className?: string
-  user: IUser;
-  isMe: boolean;
-  onSelect: () => void;
-}
+import { IUserCard } from "./HomePage";
 
 const imgSrc = "";
 

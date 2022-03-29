@@ -22,5 +22,5 @@ export const useFetch = <T>(apiCallback: (prop?: any) => Promise<any>) => {
     initialData()
   }, []);
 
-  return {resData, loading, error}
+  return {resData, setResData, loading, error}
 }

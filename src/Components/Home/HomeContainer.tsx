@@ -5,14 +5,17 @@ import Preloader from "../Preloader";
 import HomePage from "./HomePage";
 
 const HomeContainer = () => {
-  const {error, loading, resData: userList} = useFetch<IUser[]>(usersApi.getUserList)
+  const {error, loading, resData: userList, setResData: setUserList} = useFetch<IUser[]>(usersApi.getUserList)
 
   if (loading) return <Layout><Preloader/></Layout>;
   if(!!error) return <Layout><h2 style={{ color: "red", textAlign: "center" }}>{error.msg}</h2></Layout>
 
   return (
     <Layout>
-      <HomePage userList={userList}/>
+      <HomePage
+        userList={userList}
+        setUserList={setUserList}
+      />
     </Layout>
   )
 }

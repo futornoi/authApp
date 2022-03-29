@@ -1,7 +1,7 @@
 import { useAuth } from "./useAuth";
 import { RolesList } from "../Api/users";
 
-interface IUseRoles {
+export interface IUseRoles {
   admin: true | null,
   user: true | null,
 }

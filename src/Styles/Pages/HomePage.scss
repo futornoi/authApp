@@ -7,6 +7,10 @@
 	backdrop-filter: blur(10px);
 	@extend %flex-center;
 
+	&-info {
+
+	}
+
 	.user-data {
 		margin-top: 10px;
 		display: flex;
@@ -24,6 +28,10 @@
 
 	&.isMeCard {
 		background: $green;
+
+		.delete {
+			display: none;
+		}
 	}
 
 	.userCard-more {
