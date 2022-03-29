@@ -32,7 +32,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "prettier": "prettier --config .prettierrc --write \"src/**/*.{json,ts,tsx}\"",
+    "prettier": "prettier --config .prettierrc --write \"src/**/*.{json,ts,tsx}\""
   },
   "husky": {
     "hooks": {
