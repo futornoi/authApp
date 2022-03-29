@@ -1,11 +1,11 @@
-import { useRef } from "react";
-import { motion } from "framer-motion";
-import { useDimensions } from "../../../Hooks/useDemensions";
-import { MenuToggle } from "./MenuToggle";
-import { Navigation } from "./Navigation";
-import { IHeader } from "../Header";
+import { useRef } from 'react';
+import { motion } from 'framer-motion';
+import { useDimensions } from '../../../Hooks/useDemensions';
+import { MenuToggle } from './MenuToggle';
+import { Navigation } from './Navigation';
+import { IHeader } from '../Header';
 
-const NavigationContainer:React.FC<IHeader> = ({openedNav, toggleNav}) => {
+const NavigationContainer: React.FC<IHeader> = ({ openedNav, toggleNav }) => {
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
 
@@ -15,7 +15,7 @@ const NavigationContainer:React.FC<IHeader> = ({openedNav, toggleNav}) => {
       transition: { stiffness: 20, restDelta: 2 }
     }),
     closed: {
-      clipPath: "circle(20px at 35px 35px)",
+      clipPath: 'circle(20px at 35px 35px)',
       transition: { stiffness: 400, damping: 40 }
     }
   };
@@ -24,12 +24,11 @@ const NavigationContainer:React.FC<IHeader> = ({openedNav, toggleNav}) => {
     <motion.nav
       className="navigation__container"
       initial={false}
-      animate={openedNav ? "open" : "closed"}
+      animate={openedNav ? 'open' : 'closed'}
       custom={height}
-      ref={containerRef}
-    >
+      ref={containerRef}>
       <motion.div className="navigation-background" variants={sidebar} />
-      <Navigation/>
+      <Navigation />
       <MenuToggle toggle={toggleNav} />
     </motion.nav>
   );

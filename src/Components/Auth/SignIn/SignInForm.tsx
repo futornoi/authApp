@@ -1,7 +1,7 @@
-import { Form } from "react-bootstrap";
-import Field from "../../Inputs/Field";
-import Button from "../../Buttons/Button";
-import { IAuthForms, ISignInValues } from "../AuthTypes";
+import { Form } from 'react-bootstrap';
+import Field from '../../Inputs/Field';
+import Button from '../../Buttons/Button';
+import { IAuthForms, ISignInValues } from '../AuthTypes';
 
 const SignInForm: React.FC<IAuthForms<ISignInValues>> = ({ goRedirect, formik }) => (
   <Form onSubmit={formik.handleSubmit} className="d-flex flex-column">
@@ -27,10 +27,14 @@ const SignInForm: React.FC<IAuthForms<ISignInValues>> = ({ goRedirect, formik })
       touched={formik.touched.password}
     />
     <Form.Group className="mt-3 d-flex gap-3">
-      <Button disabled={formik.isSubmitting} className="w-50 align-self-center" type="submit">Sign In</Button>
-      <Button className="w-50 align-self-center green" type="button" onClick={goRedirect}>Registration</Button>
+      <Button disabled={formik.isSubmitting} className="w-50 align-self-center" type="submit">
+        Sign In
+      </Button>
+      <Button className="w-50 align-self-center green" type="button" onClick={goRedirect}>
+        Registration
+      </Button>
     </Form.Group>
   </Form>
-)
+);
 
-export default SignInForm
+export default SignInForm;

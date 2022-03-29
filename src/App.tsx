@@ -1,4 +1,4 @@
-import { useRouterConfig } from "./Hooks/useRouterConfig";
+import { useRouterConfig } from './Hooks/useRouterConfig';
 
 const App = () => {
   const router = useRouterConfig();

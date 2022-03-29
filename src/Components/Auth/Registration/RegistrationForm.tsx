@@ -1,9 +1,9 @@
-import Field from "../../Inputs/Field";
-import { Col, Form, Row } from "react-bootstrap";
-import Button from "../../Buttons/Button";
-import { IAuthForms, IRegistrationValues } from "../AuthTypes";
+import Field from '../../Inputs/Field';
+import { Col, Form, Row } from 'react-bootstrap';
+import Button from '../../Buttons/Button';
+import { IAuthForms, IRegistrationValues } from '../AuthTypes';
 
-const RegistrationForm: React.FC<IAuthForms<IRegistrationValues>> = ({ goRedirect, formik}) => (
+const RegistrationForm: React.FC<IAuthForms<IRegistrationValues>> = ({ goRedirect, formik }) => (
   <Form onSubmit={formik.handleSubmit} className="d-flex flex-column">
     <Row>
       <Col sm={12} md={6}>
@@ -59,10 +59,14 @@ const RegistrationForm: React.FC<IAuthForms<IRegistrationValues>> = ({ goRedirec
       </Col>
     </Row>
     <Form.Group className="mt-3 d-flex gap-3">
-      <Button className="w-50 align-self-center" onClick={goRedirect}>Go back to sign In</Button>
-      <Button disabled={formik.isSubmitting} className="w-50 align-self-center green" type="submit">Registration</Button>
+      <Button className="w-50 align-self-center" onClick={goRedirect}>
+        Go back to sign In
+      </Button>
+      <Button disabled={formik.isSubmitting} className="w-50 align-self-center green" type="submit">
+        Registration
+      </Button>
     </Form.Group>
   </Form>
-)
+);
 
-export default RegistrationForm
+export default RegistrationForm;

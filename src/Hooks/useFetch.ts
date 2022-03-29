@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export const useFetch = <T>(apiCallback: (prop?: any) => Promise<any>) => {
   const [resData, setResData] = useState<T | null>(null);
@@ -6,21 +6,21 @@ export const useFetch = <T>(apiCallback: (prop?: any) => Promise<any>) => {
   const [error, setError] = useState<any>(null);
 
   const initialData = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
       const data = await apiCallback();
-      setResData(data)
-      setLoading(false)
+      setResData(data);
+      setLoading(false);
     } catch (e) {
-      setError(e)
+      setError(e);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    initialData()
+    initialData();
   }, []);
 
-  return {resData, setResData, loading, error}
-}
+  return { resData, setResData, loading, error };
+};

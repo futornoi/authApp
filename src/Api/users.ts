@@ -1,15 +1,15 @@
-import { ApiCall } from "./api";
+import { ApiCall } from './api';
 
 export interface IUser {
-  _id: string,
-  name: string,
-  email: string,
-  roles: RolesList[],
+  _id: string;
+  name: string;
+  email: string;
+  roles: RolesList[];
 }
 
 export enum RolesList {
-  USER = "USER",
-  ADMIN = "ADMIN"
+  USER = 'USER',
+  ADMIN = 'ADMIN'
 }
 
 export const usersApi = {
@@ -20,6 +20,6 @@ export const usersApi = {
     return ApiCall('delete', `/users/${id}`);
   },
   getAuthUser: async (token: string) => {
-    return ApiCall('post', '/authUser', { token })
+    return ApiCall('post', '/authUser', { token });
   }
-}
+};

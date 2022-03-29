@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
-import { IUser, usersApi } from "../Api/users";
-import { useNavigate } from "react-router-dom";
-import { pagesPath } from "./useRouterConfig";
+import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
+import { IUser, usersApi } from '../Api/users';
+import { useNavigate } from 'react-router-dom';
+import { pagesPath } from './useRouterConfig';
 
 interface IUseAuth {
-  token: string | null,
-  user: IUser | null
+  token: string | null;
+  user: IUser | null;
 }
 
 export const useAuth = () => {
-  const token = Cookies.get("apiToken") || null
+  const token = Cookies.get('apiToken') || null;
   const navigate = useNavigate();
   const [authInfo, setAuthInfo] = useState<IUseAuth>({
     token: token,
-    user: null,
+    user: null
   });
 
   useEffect(() => {
@@ -25,15 +25,15 @@ export const useAuth = () => {
           setAuthInfo(prev => ({
             ...prev,
             user: data
-          }))
+          }));
         }
       } catch {
-        Cookies.remove("apiToken");
+        Cookies.remove('apiToken');
         navigate(pagesPath.signIn);
       }
-    }
-    getAuthData()
-  }, [])
+    };
+    getAuthData();
+  }, []);
 
   return { authInfo, setAuthInfo };
-}
+};
