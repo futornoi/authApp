@@ -12,18 +12,8 @@ const HomeContainer = () => {
     setResData: setUserList
   } = useFetch<IUser[]>(usersApi.getUserList);
 
-  if (loading)
-    return (
-      <Layout>
-        <Preloader />
-      </Layout>
-    );
-  if (!!error)
-    return (
-      <Layout>
-        <h2 style={{ color: 'red', textAlign: 'center' }}>{error.msg}</h2>
-      </Layout>
-    );
+  if (loading) return <Layout><Preloader /></Layout>;
+  if (!!error) return <Layout><h2 style={{ color: 'red', textAlign: 'center' }}>{error.msg}</h2></Layout>;
 
   return (
     <Layout>

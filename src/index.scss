@@ -108,6 +108,9 @@ code {
 //AVATAR
 .avatar-img_container {
 	overflow: hidden;
+	&.upload-mode {
+		cursor: alias;
+	}
 }
 
 .avatar-img {

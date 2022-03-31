@@ -4,11 +4,11 @@ import { getFirstLetters } from '../Helpers/nameInitials';
 interface IAvatar {
   imgSrc: string;
   initialName: string;
+  className?: string;
   sizes?: number;
-  colorIndex?: number;
 }
 
-const Avatar: React.FC<IAvatar> = ({ imgSrc, sizes, initialName }) => {
+const Avatar: React.FC<IAvatar> = ({ imgSrc, sizes, initialName, className }) => {
   const avatarSize = {
     width: sizes ?? 80,
     height: sizes ?? 80,
@@ -19,7 +19,7 @@ const Avatar: React.FC<IAvatar> = ({ imgSrc, sizes, initialName }) => {
   return (
     <motion.div
       style={avatarSize}
-      className="avatar-img_container"
+      className={`avatar-img_container ${className ?? ''}`}
       whileHover={{ scale: 1.1, borderRadius: '30%' }}>
       {imgSrc ? (
         <img className="avatar-img" src={imgSrc} alt="me photo" />

@@ -1,12 +1,12 @@
 import { IUser, usersApi } from '../../Api/users';
 import UserCard from './UserCard';
 import '../../Styles/Pages/HomePage.scss';
-import { useAuth } from '../../Hooks/useAuth';
 import ModalWrapper from '../Modal/ModalWrapper';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useRoles } from '../../Hooks/useRoles';
 import UserEditForm from './UserEditForm';
 import CurrentUserCard from './CurrentUserCard';
+import { AuthContext } from "../../Context/authContext";
 
 interface IHome {
   userList: IUser[] | null;
@@ -21,16 +21,18 @@ export interface IUserCard {
 }
 
 const HomePage: React.FC<IHome> = ({ userList, setUserList }) => {
-  const { authInfo } = useAuth();
+  const { user } = useContext(AuthContext);
   const { admin } = useRoles();
-  const getMeCard = (id?: string) => authInfo.user?._id === id;
+  const getMeCard = (id?: string) => user?._id === id;
 
   const [currentUser, setCurrentUser] = useState<IUser | null>(null);
-  // @ts-ignore
   const [editMode, setEditMode] = useState(false);
 
   const userHandler = {
-    current: (curUser: typeof currentUser) => () => setCurrentUser(curUser),
+    current: (curUser: typeof currentUser) => () => {
+      setEditMode(false);
+      setCurrentUser(curUser)
+    },
     delete: (id: string) => async () => {
       try {
         if (!!userList) {
@@ -43,7 +45,16 @@ const HomePage: React.FC<IHome> = ({ userList, setUserList }) => {
         console.log(e);
       }
     },
-    editMode: () => setEditMode(prev => !prev)
+    edit: () => (updatedUser: IUser) => {
+      if (!!userList) {
+        const currUserIndex = userList?.findIndex(user => user?._id === updatedUser?._id);
+        let updatedArray = [...userList];
+        updatedArray[currUserIndex] = { ...updatedUser };
+        setUserList(updatedArray);
+        setCurrentUser(null)
+      }
+    },
+    toggleEditMode: () => setEditMode(prev => !prev)
   };
 
   const userCard = userList?.map(user => (
@@ -71,10 +82,15 @@ const HomePage: React.FC<IHome> = ({ userList, setUserList }) => {
                 isMe={getMeCard(currentUser._id)}
                 role={admin}
                 deleteUser={userHandler.delete(currentUser._id)}
-                openEditMode={userHandler.editMode}
+                openEditMode={userHandler.toggleEditMode}
               />
             ) : (
-              <UserEditForm />
+              <UserEditForm
+                isMe={getMeCard(currentUser._id)}
+                user={currentUser}
+                closeEditMode={userHandler.toggleEditMode}
+                updateUserInfo={userHandler.edit()}
+              />
             )
           }
         />

@@ -1,5 +1,6 @@
 import * as yup from 'yup';
 import { AnyObject } from 'yup/es/types';
+import { RolesList } from "../../Api/enums";
 
 enum errorMessages {
   REQUIRED = 'Required',
@@ -22,3 +23,10 @@ export const registrationValidSchema = definedSchema({
 });
 
 export const signInValidSchema = registrationValidSchema.omit(['confirmPassword', 'name']);
+
+export const editUserValidation = definedSchema({
+  name: yup.string().min(4, errorMessages.SMALL).required(errorMessages.REQUIRED),
+  email: yup.string().email(errorMessages.INCORRECT).required(errorMessages.REQUIRED),
+  roles: yup.string().oneOf([RolesList.USER, RolesList.ADMIN], errorMessages.INCORRECT).required(errorMessages.REQUIRED),
+});
+

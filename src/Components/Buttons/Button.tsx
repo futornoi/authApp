@@ -10,7 +10,7 @@ interface IDefaultButton {
 const Button: React.FC<IDefaultButton> = ({ children, type, className, onClick, disabled }) => {
   return (
     <button
-      className={`${className ?? className} default-button`}
+      className={`${className ?? ''} default-button`}
       type={type ?? 'button'}
       disabled={disabled}
       onClick={onClick}>

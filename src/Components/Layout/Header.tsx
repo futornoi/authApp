@@ -1,23 +1,13 @@
 import { Container, Navbar } from 'react-bootstrap';
-import { useAuth } from '../../Hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
-import { pagesPath } from '../../Hooks/useRouterConfig';
-import Cookies from 'js-cookie';
 import NavigationContainer from './Nav/NavigationContainer';
 import { ILayout } from './LayoutTypes';
+import { useContext } from "react";
+import { AuthContext } from "../../Context/authContext";
 
-export interface IHeader extends ILayout {
-  toggleNav: () => void;
-}
+export interface IHeader extends ILayout {toggleNav: () => void}
 
 const Header: React.FC<IHeader> = ({ openedNav, toggleNav }) => {
-  const { authInfo } = useAuth();
-  const { user } = authInfo;
-  const navigate = useNavigate();
-  const signOut = () => {
-    Cookies.remove('apiToken');
-    navigate(pagesPath.signIn);
-  };
+  const {user, logout} = useContext(AuthContext);
 
   return (
     <header id="header">
@@ -29,8 +19,8 @@ const Header: React.FC<IHeader> = ({ openedNav, toggleNav }) => {
           </Navbar.Brand>
           <Navbar style={{ zIndex: 2 }} id="basic-navbar-nav" className="justify-content-end">
             <Navbar.Text>
-              Signed in as:{' '}
-              <button className="default-link" onClick={signOut}>
+              Signed in as:
+              <button className="default-link" onClick={logout}>
                 {user?.name}
               </button>
             </Navbar.Text>

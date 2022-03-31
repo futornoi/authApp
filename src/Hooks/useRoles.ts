@@ -1,5 +1,6 @@
-import { useAuth } from './useAuth';
-import { RolesList } from '../Api/users';
+import { useContext } from "react";
+import { AuthContext } from "../Context/authContext";
+import { RolesList } from "../Api/enums";
 
 export interface IUseRoles {
   admin: true | null;
@@ -7,8 +8,8 @@ export interface IUseRoles {
 }
 
 export const useRoles = (): IUseRoles => {
-  const { authInfo } = useAuth();
-  const getRole = (role: RolesList) => authInfo.user?.roles.includes(role) || null;
+  const {user} = useContext(AuthContext);
+  const getRole = (role: RolesList) => user?.roles.includes(role) || null;
 
   return {
     admin: getRole(RolesList.ADMIN),

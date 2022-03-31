@@ -1,4 +1,5 @@
 import { ApiCall } from './api';
+import { RolesList } from "./enums";
 
 export interface IUser {
   _id: string;
@@ -7,19 +8,21 @@ export interface IUser {
   roles: RolesList[];
 }
 
-export enum RolesList {
-  USER = 'USER',
-  ADMIN = 'ADMIN'
+export interface IEditUser extends Omit<IUser, "_id" | "roles">{
+  roles: RolesList
 }
 
 export const usersApi = {
   getUserList: async (): Promise<IUser[]> => {
-    return ApiCall('get', '/users');
+    return await ApiCall('get', '/users');
   },
   deleteUser: async (id: string) => {
-    return ApiCall('delete', `/users/${id}`);
+    return await ApiCall('delete', `/users/${id}`);
+  },
+  editUser: async (id: string, data: IEditUser): Promise<IUser> => {
+    return await ApiCall('post', `/users-edit/${id}`, data)
   },
   getAuthUser: async (token: string) => {
-    return ApiCall('post', '/authUser', { token });
+    return await ApiCall('post', '/authUser', { token });
   }
 };

@@ -4,7 +4,7 @@ import { IUser, usersApi } from '../Api/users';
 import { useNavigate } from 'react-router-dom';
 import { pagesPath } from './useRouterConfig';
 
-interface IUseAuth {
+export interface IUseAuth {
   token: string | null;
   user: IUser | null;
 }
@@ -33,7 +33,18 @@ export const useAuth = () => {
       }
     };
     getAuthData();
-  }, []);
+  }, [token]);
 
-  return { authInfo, setAuthInfo };
+  const login = (token: string) => {
+    Cookies.set('apiToken', token)
+    setAuthInfo(prev => ({...prev, token}))
+    navigate(pagesPath.home);
+  }
+  const logout = () => {
+    Cookies.remove('apiToken')
+    setAuthInfo(prev => ({...prev, token: null}))
+    navigate(pagesPath.signIn);
+  }
+
+  return { authInfo, login, logout };
 };
