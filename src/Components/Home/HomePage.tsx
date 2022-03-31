@@ -6,7 +6,7 @@ import { useContext, useState } from 'react';
 import { useRoles } from '../../Hooks/useRoles';
 import UserEditForm from './UserEditForm';
 import CurrentUserCard from './CurrentUserCard';
-import { AuthContext } from "../../Context/authContext";
+import { AuthContext } from '../../Context/authContext';
 
 interface IHome {
   userList: IUser[] | null;
@@ -31,7 +31,7 @@ const HomePage: React.FC<IHome> = ({ userList, setUserList }) => {
   const userHandler = {
     current: (curUser: typeof currentUser) => () => {
       setEditMode(false);
-      setCurrentUser(curUser)
+      setCurrentUser(curUser);
     },
     delete: (id: string) => async () => {
       try {
@@ -51,7 +51,7 @@ const HomePage: React.FC<IHome> = ({ userList, setUserList }) => {
         let updatedArray = [...userList];
         updatedArray[currUserIndex] = { ...updatedUser };
         setUserList(updatedArray);
-        setCurrentUser(null)
+        setCurrentUser(null);
       }
     },
     toggleEditMode: () => setEditMode(prev => !prev)

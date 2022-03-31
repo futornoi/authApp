@@ -6,18 +6,18 @@ import { useFormik } from 'formik';
 import { signInValidSchema } from '../../Schemas/validations';
 import { ISignInValues } from '../AuthTypes';
 import { authApi } from '../../../Api/auth';
-import { useContext } from "react";
-import { AuthContext } from "../../../Context/authContext";
+import { useContext } from 'react';
+import { AuthContext } from '../../../Context/authContext';
 
 const SignInContainer = () => {
-  const {login} = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const goRedirect = () => navigate(pagesPath.registration);
 
   const handleOnSubmit = async (values: ISignInValues) => {
     try {
       const resData = await authApi.login(values);
-      login(resData.token)
+      login(resData.token);
     } catch (e: any) {
       formik.setFieldError(e.key, e.msg);
     }

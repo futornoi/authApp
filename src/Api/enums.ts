@@ -1,4 +1,4 @@
-import { ApiCall } from "./api";
+import { ApiCall } from './api';
 
 export enum RolesList {
   USER = 'USER',
@@ -6,12 +6,12 @@ export enum RolesList {
 }
 
 export type Roles = {
-  _id: string,
-  value: RolesList
-}
+  _id: string;
+  value: RolesList;
+};
 
 export const enumsApi = {
   getRoles: async (): Promise<Roles[]> => {
     return await ApiCall('get', '/enums/roles');
   }
-}
+};

@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import { AuthContext } from "../Context/authContext";
-import { RolesList } from "../Api/enums";
+import { useContext } from 'react';
+import { AuthContext } from '../Context/authContext';
+import { RolesList } from '../Api/enums';
 
 export interface IUseRoles {
   admin: true | null;
@@ -8,7 +8,7 @@ export interface IUseRoles {
 }
 
 export const useRoles = (): IUseRoles => {
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const getRole = (role: RolesList) => user?.roles.includes(role) || null;
 
   return {

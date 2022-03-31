@@ -1,13 +1,15 @@
 import { Container, Navbar } from 'react-bootstrap';
 import NavigationContainer from './Nav/NavigationContainer';
 import { ILayout } from './LayoutTypes';
-import { useContext } from "react";
-import { AuthContext } from "../../Context/authContext";
+import { useContext } from 'react';
+import { AuthContext } from '../../Context/authContext';
 
-export interface IHeader extends ILayout {toggleNav: () => void}
+export interface IHeader extends ILayout {
+  toggleNav: () => void;
+}
 
 const Header: React.FC<IHeader> = ({ openedNav, toggleNav }) => {
-  const {user, logout} = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   return (
     <header id="header">

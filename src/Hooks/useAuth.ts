@@ -36,15 +36,15 @@ export const useAuth = () => {
   }, [token]);
 
   const login = (token: string) => {
-    Cookies.set('apiToken', token)
-    setAuthInfo(prev => ({...prev, token}))
+    Cookies.set('apiToken', token);
+    setAuthInfo(prev => ({ ...prev, token }));
     navigate(pagesPath.home);
-  }
+  };
   const logout = () => {
-    Cookies.remove('apiToken')
-    setAuthInfo(prev => ({...prev, token: null}))
+    Cookies.remove('apiToken');
+    setAuthInfo(prev => ({ ...prev, token: null }));
     navigate(pagesPath.signIn);
-  }
+  };
 
   return { authInfo, login, logout };
 };
