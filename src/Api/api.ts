@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import Cookies from 'js-cookie';
 
-const API_URL = 'http://localhost:3001';
+const API_URL = 'https://futornoi.herokuapp.com';
 
 const handlerSuccess = (res: AxiosResponse) => res.data;
 const handlerError = (err: AxiosError) => Promise.reject(err.response?.data);
