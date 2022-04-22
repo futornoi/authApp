@@ -23,6 +23,10 @@
 		& > .navbar {
 			background: rgba(107, 106, 106, 0.2);
 		}
+		.header-brand,
+		.header-auth {
+			color: var(--text-color);
+		}
 	}
 
 	#main {
@@ -35,7 +39,7 @@
 		transition: inherit;
 		flex: 0 0 auto;
 		padding: 20px 0;
-		border-top: 1px solid rgba($gray, .5);
+		border-top: 1px solid rgba(var(--gray), .5);
 
 		.container {
 			.contacts {
@@ -54,7 +58,7 @@
 					}
 
 					&:hover {
-						border: 1px solid $green;
+						border: 1px solid var(--green);
 						box-shadow: $box-shadow;
 					}
 				}
@@ -72,6 +76,15 @@
 	width: 300px;
 	@include media($lg) {
 		width: 100vw;
+	}
+
+	.navigation-items {
+		padding: 100px 20px;
+		display: flex;
+		flex-direction: column;
+		.switch-theme {
+			align-self: center;
+		}
 	}
 
 	.navigation-background {
@@ -101,7 +114,7 @@
 		background: transparent;
 
 		svg path {
-			stroke: $text-color;
+			stroke: var(--text-color);
 		}
 	}
 }

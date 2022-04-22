@@ -7,10 +7,6 @@
 	backdrop-filter: blur(10px);
 	@extend %flex-center;
 
-	&-info {
-
-	}
-
 	.user-data {
 		margin-top: 10px;
 		display: flex;
@@ -20,14 +16,15 @@
 		.user-field {
 			font-size: 24px;
 			&:not(.title) {
-				display: grid;
-				grid-template-columns: 80px 1fr;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 12px;
 			}
 		}
 	}
 
 	&.isMeCard {
-		background: $green;
+		background: var(--green);
 
 		.delete {
 			display: none;

@@ -6,10 +6,19 @@ body {
 	margin: 0;
 	font-family: 'Hubballi', sans-serif;
 	font-size: 18px;
-	background: $bg-color;
-	color: $text-color;
 	line-height: 18px;
 	overflow-x: hidden;
+	transition: $transition;
+	background: var(--bg-color);
+	color: var(--text-color);
+
+	&.checked.dark {
+		--text-color: #f6fff2;
+		--text-hover-color: #05694b;
+		--green: rgba(100, 199, 130, 0.6);
+		--gray: rgba(185, 190, 177, 0.38);
+		--bg-color: linear-gradient(90deg, #010917 0, #02122a 58%);
+	}
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -71,7 +80,7 @@ code {
 
 //LINK
 .default-link {
-	color: inherit;
+	color: var(--text-color);
 	transition: $transition;
 
 	&.white {
@@ -93,7 +102,7 @@ code {
 		display: block;
 		width: 0;
 		height: 1px;
-		background-color: $text-hover-color;
+		background-color: var(--text-hover-color);
 	}
 
 	&:hover {
@@ -101,7 +110,7 @@ code {
 			width: 100%;
 		}
 
-		color: $text-hover-color;
+		color: var(--text-hover-color);
 	}
 }
 
@@ -118,7 +127,7 @@ code {
 	object-fit: cover;
 	&.letter {
 		@extend %flex-center;
-		background-color: rgba($gray, .2);
+		background-color: rgba(var(--gray), .2);
 		color: $white;
 		font-size: 24px;
 	}
@@ -133,10 +142,10 @@ code {
 
 .card {
 	padding: 12px;
-	box-shadow: 0 2px 0.4rem 0.05rem rgba($gray, .5px);
+	box-shadow: 0 2px 0.4rem 0.05rem rgba(var(--gray), .5px);
 	transition: $transition;
 	&:hover {
-		box-shadow: 0 2px 0.4rem 0.05rem rgba($green, .5px);
+		box-shadow: 0 2px 0.4rem 0.05rem rgba(var(--green), .5px);
 	}
 }
 
@@ -150,7 +159,7 @@ code {
 		span {
 			transition: $transition;
 			@include size(8px, 8px, 50%);
-			background-color: $text-color;
+			background-color: var(--text-color);
 		}
 	}
 	&_content {
@@ -164,13 +173,13 @@ code {
 		top: 5px;
 		right: 0;
 		padding: 20px 10px 10px;
-		border: 1px solid $text-color;
+		border: 1px solid var(--text-color);
 		border-radius: $border-radius;
 	}
 
 	&:hover {
 		.moreActions_burger span {
-			background-color: $green;
+			background-color: var(--green);
 		}
 		.moreActions_content {
 			opacity: 1;

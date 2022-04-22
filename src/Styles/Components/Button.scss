@@ -4,16 +4,16 @@
 	position: relative;
 	border-radius: 8px;
 	outline: none;
-	border: 1px solid $text-color;
-	color: $text-color;
+	border: 1px solid var(--text-color);
+	color: var(--text-color);
 	padding: 8px;
 	font-weight: 600;
 	background-color: unset;
 	transition: $transition;
 
 	&:disabled {
-		border-color: $gray;
-		color: $gray;
+		border-color: var(--gray);
+		color: var(--gray);
 		pointer-events: none;
 		cursor: default;
 	}
@@ -28,7 +28,7 @@
 		border: 1px solid $white;
 		color: $white;
 		&:hover {
-			background-color: $green;
+			background-color: var(--green);
 			border-color: $white;
 		}
 	}

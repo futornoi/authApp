@@ -6,7 +6,7 @@
 	border: 1px solid $white;
 	background-color: unset !important;
 	& ~ label {
-		color: $text-color !important;
+		color: var(--text-color) !important;
 	}
 	&.invalid {
 		box-shadow: $box-shadow-error !important;
@@ -21,7 +21,7 @@
 		box-shadow: $box-shadow;
 
 		& ~ label {
-			color: $text-color !important;
+			color: var(--text-color) !important;
 		}
 	}
 }

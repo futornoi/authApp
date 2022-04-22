@@ -1,24 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-index"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet">
+<head>
+	<meta charset="utf-8"/>
+	<link rel="icon" href="%PUBLIC_URL%/favicon.ico"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta name="theme-color">
+	<meta
+		name="description"
+		content="Web site created using create-react-index"
+	/>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet">
 
+	<title>futornoi</title>
 
-    <title>futornoi</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this index.</noscript>
-    <div id="root"></div>
+	<style>
+		:root {
+			--themeLight: #5f988a;
+			--themeDark: #000000;
+		}
+	</style>
 
-  </body>
+</head>
+<body class="checked">
+<noscript>You need to enable JavaScript to run this index.</noscript>
+<div id="root"></div>
+
+<script>
+  const checkColorTheme = () => {
+    const theme = localStorage.getItem('theme');
+    const body = document.body;
+    const lightThemeName = 'light';
+    const browserTheme = document.querySelector('meta[name="theme-color"]');
+    const rootVariables = document.querySelector(':root');
+
+    const getVariableColor = color => getComputedStyle(rootVariables).getPropertyValue(color);
+
+    if (!!theme) {
+      body.classList.add(theme);
+
+      if (theme === lightThemeName)
+        browserTheme.content = String(getVariableColor('--themeLight'));
+      else {
+        browserTheme.content = String(getVariableColor('--themeDark'));
+      }
+    } else {
+      localStorage.setItem('theme', 'light');
+      body.classList.add(lightThemeName);
+      browserTheme.content = String(getVariableColor('--themeLight'));
+    }
+  }
+
+  checkColorTheme()
+</script>
+</body>
 </html>

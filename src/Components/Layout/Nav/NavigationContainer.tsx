@@ -4,6 +4,8 @@ import { useDimensions } from '../../../Hooks/useDemensions';
 import { MenuToggle } from './MenuToggle';
 import { Navigation } from './Navigation';
 import { IHeader } from '../Header';
+import { toggleColorTheme } from "../../../Helpers/changeThemeColor";
+import ThemeSwitchButton from "../../Inputs/ThemeSwitchButton";
 
 const NavigationContainer: React.FC<IHeader> = ({ openedNav, toggleNav }) => {
   const containerRef = useRef(null);
@@ -27,9 +29,16 @@ const NavigationContainer: React.FC<IHeader> = ({ openedNav, toggleNav }) => {
       animate={openedNav ? 'open' : 'closed'}
       custom={height}
       ref={containerRef}>
-      <motion.div className="navigation-background" variants={sidebar} />
-      <Navigation />
-      <MenuToggle toggle={toggleNav} />
+      <motion.div className="navigation-background" variants={sidebar}>
+        <div className="navigation-items">
+          <ThemeSwitchButton
+            className="switch-theme"
+            onClick={toggleColorTheme}
+            checked={false}/>
+        </div>
+      </motion.div>
+      <Navigation/>
+      <MenuToggle toggle={toggleNav}/>
     </motion.nav>
   );
 };

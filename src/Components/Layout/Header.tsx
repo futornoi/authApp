@@ -16,11 +16,11 @@ const Header: React.FC<IHeader> = ({ openedNav, toggleNav }) => {
       <Navbar expand="lg">
         <Container>
           <NavigationContainer openedNav={openedNav} toggleNav={toggleNav} />
-          <Navbar.Brand style={{ zIndex: 2, marginLeft: 40 }} href="#home">
+          <Navbar.Brand className="header-brand" style={{ zIndex: 2, marginLeft: 40 }} href="#home">
             Futornoi
           </Navbar.Brand>
           <Navbar style={{ zIndex: 2 }} id="basic-navbar-nav" className="justify-content-end">
-            <Navbar.Text>
+            <Navbar.Text className="header-auth">
               Signed in as:
               <button className="default-link" onClick={logout}>
                 {user?.name}
