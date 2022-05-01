@@ -21,6 +21,7 @@ const ThemeSwitchButton:React.FC<ThemeButton> = ({checked, onClick, className}) 
         className="theme-switch__input"
         type="checkbox"
         name="theme-switch"
+        readOnly
         checked={isChecked}
         onClick={handleOnChecked}
       />

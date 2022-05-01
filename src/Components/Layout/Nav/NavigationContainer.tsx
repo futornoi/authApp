@@ -10,6 +10,7 @@ import ThemeSwitchButton from "../../Inputs/ThemeSwitchButton";
 const NavigationContainer: React.FC<IHeader> = ({ openedNav, toggleNav }) => {
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
+  const isChecked = localStorage.getItem('theme');
 
   const sidebar = {
     open: (height = 1000) => ({
@@ -34,7 +35,7 @@ const NavigationContainer: React.FC<IHeader> = ({ openedNav, toggleNav }) => {
           <ThemeSwitchButton
             className="switch-theme"
             onClick={toggleColorTheme}
-            checked={false}/>
+            checked={isChecked === 'dark'}/>
         </div>
       </motion.div>
       <Navigation/>

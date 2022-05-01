@@ -6,10 +6,12 @@ export interface IUser {
   name: string;
   email: string;
   roles: RolesList[];
+  imgSrc: string;
 }
 
 export interface IEditUser extends Omit<IUser, '_id' | 'roles'> {
   roles: RolesList;
+  imgFile: null | File,
 }
 
 export const usersApi = {
@@ -24,5 +26,10 @@ export const usersApi = {
   },
   getAuthUser: async (token: string) => {
     return await ApiCall('post', '/authUser', { token });
+  },
+  uploadImage: async (id: string, image: File): Promise<IUser> => {
+    const FD = new FormData();
+    FD.append('user-avatar', image)
+   return await ApiCall('post', `/upload-user-file/${id}`, FD)
   }
 };

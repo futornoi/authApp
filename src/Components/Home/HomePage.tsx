@@ -1,4 +1,4 @@
-import { IUser, usersApi } from '../../Api/users';
+import { IEditUser, IUser, usersApi } from '../../Api/users';
 import UserCard from './UserCard';
 import '../../Styles/Pages/HomePage.scss';
 import ModalWrapper from '../Modal/ModalWrapper';
@@ -45,13 +45,27 @@ const HomePage: React.FC<IHome> = ({ userList, setUserList }) => {
         console.log(e);
       }
     },
-    edit: () => (updatedUser: IUser) => {
-      if (!!userList) {
-        const currUserIndex = userList?.findIndex(user => user?._id === updatedUser?._id);
-        let updatedArray = [...userList];
-        updatedArray[currUserIndex] = { ...updatedUser };
-        setUserList(updatedArray);
-        setCurrentUser(null);
+    edit: () => async (userId: string, formValue: IEditUser) => {
+      try {
+        if (!!userList) {
+          let updatedUser: IUser
+          const formatValue = {...formValue};
+          // @ts-ignore
+          delete formatValue?.imgFile;
+          updatedUser = await usersApi.editUser(userId, formatValue);
+
+          if (formValue.imgFile) {
+            updatedUser = await usersApi.uploadImage(userId, formValue.imgFile);
+          }
+
+          const currUserIndex = userList?.findIndex(user => user?._id === updatedUser?._id);
+          let updatedArray = [...userList];
+          updatedArray[currUserIndex] = { ...updatedUser };
+          setUserList(updatedArray);
+          setCurrentUser(null);
+        }
+      } catch (e) {
+        console.log(e)
       }
     },
     toggleEditMode: () => setEditMode(prev => !prev)

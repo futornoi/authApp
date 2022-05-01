@@ -5,6 +5,7 @@
 	transition: $transition;
 	border: 1px solid $white;
 	background-color: unset !important;
+	color: var(--text-color) !important;
 	& ~ label {
 		color: var(--text-color) !important;
 	}

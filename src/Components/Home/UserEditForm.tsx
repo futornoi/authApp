@@ -3,35 +3,42 @@ import { IUserCard } from './HomePage';
 import { useFormik } from 'formik';
 import Field from '../Inputs/Field';
 import { Form } from 'react-bootstrap';
-import { IEditUser, IUser, usersApi } from '../../Api/users';
+import { IEditUser, IUser } from '../../Api/users';
 import Button from '../Buttons/Button';
 import { useFetch } from '../../Hooks/useFetch';
 import { enumsApi, Roles } from '../../Api/enums';
 import Preloader from '../Preloader';
 import { editUserValidation } from '../Schemas/validations';
+import { getImagePath } from "../../Helpers/getImagePath";
+import { ChangeEvent } from "react";
 
 interface IUserEditMode extends Pick<IUserCard, 'user' | 'isMe'> {
   closeEditMode: () => void;
-  updateUserInfo: (updatedUser: IUser) => void;
+  updateUserInfo: (userId: string, formValue: IEditUser) => void;
 }
 
 const UserEditMode: React.FC<IUserEditMode> = ({ user, isMe, closeEditMode, updateUserInfo }) => {
   const { resData: rolesList, loading } = useFetch<Roles[]>(enumsApi.getRoles);
 
-  const onSubmit = async (value: IEditUser) => {
-    const updatedUser = await usersApi.editUser(user._id, value);
-    updateUserInfo(updatedUser);
-  };
-
   const formik = useFormik({
     initialValues: {
       name: user.name,
       email: user.email,
-      roles: user.roles[0]
+      roles: user.roles[0],
+      imgSrc: user.imgSrc,
+      imgFile: null,
     },
     validationSchema: editUserValidation,
-    onSubmit
+    onSubmit: (value: IEditUser) => updateUserInfo(user._id, value)
   });
+
+  const handleOnFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if(e.target !== null && e.target.files) {
+      const file = e.target.files[0];
+      formik.setFieldValue(e.target.name, file)
+      formik.setFieldValue('imgSrc', URL.createObjectURL(file))
+    }
+  };
 
   const returnFormikProps = (fieldName: keyof Omit<IUser, '_id'>) => {
     return {
@@ -50,6 +57,11 @@ const UserEditMode: React.FC<IUserEditMode> = ({ user, isMe, closeEditMode, upda
       {role.value}
     </option>
   ));
+
+  const avatarSrc = !!formik.values.imgFile
+    ? formik.values.imgSrc
+    : getImagePath(formik.values.imgSrc)
+
   return (
     <form onSubmit={formik.handleSubmit} className={`card userCard ${isMe ? 'isMeCard' : ''}`}>
       <div className="userCard-more">
@@ -62,10 +74,16 @@ const UserEditMode: React.FC<IUserEditMode> = ({ user, isMe, closeEditMode, upda
           <Avatar
             className="upload-mode"
             initialName={formik.values.name || user.name}
-            imgSrc={''}
+            imgSrc={avatarSrc}
           />
         </label>
-        <input className="d-none" id="imageFile" type="file" name="imgSrc" />
+        <input
+          id="imageFile"
+          className="d-none"
+          type="file"
+          name="imgFile"
+          onChange={handleOnFileChange}
+        />
       </div>
       <div className="user-data w-75">
         <Field name="name" type="text" placeholder="name" {...returnFormikProps('name')} />

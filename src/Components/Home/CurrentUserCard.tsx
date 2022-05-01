@@ -2,6 +2,7 @@ import MoreActionsPopup from '../MoreActionsPopup';
 import Avatar from '../Avatar';
 import { IUserCard } from './HomePage';
 import { IUseRoles } from '../../Hooks/useRoles';
+import { getImagePath } from "../../Helpers/getImagePath";
 
 interface ICurrentUserCard extends Pick<IUserCard, 'user' | 'isMe'> {
   role: IUseRoles['admin'];
@@ -28,7 +29,7 @@ const CurrentUserCard: React.FC<ICurrentUserCard> = ({
           </button>
         </MoreActionsPopup>
       )}
-      <Avatar initialName={user.name} imgSrc={''} />
+      <Avatar initialName={user.name} imgSrc={getImagePath(user.imgSrc)} />
       <div className="user-data">
         <div className="user-field">
           <span>Name:</span> <strong>{user.name}</strong>
